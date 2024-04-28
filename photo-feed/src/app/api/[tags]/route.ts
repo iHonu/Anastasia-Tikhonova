@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
+  request: Request,
   { params }: { params: { tags: string } }
 ) {
   const tags = params.tags;
@@ -9,7 +9,7 @@ export async function GET(
     `https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=${tags}`
   );
   const data = await res.json();
-  const pureData = data.items
+  
 
-  return NextResponse.json({ pureData });
+  return NextResponse.json({ data });
 }
