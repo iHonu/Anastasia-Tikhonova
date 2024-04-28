@@ -6,5 +6,7 @@ export async function GET() {
   );
   const data = await res.json();
 
-  return NextResponse.json({ data });
+  const pureData = data.items
+
+  return NextResponse.json({ pureData });
 }

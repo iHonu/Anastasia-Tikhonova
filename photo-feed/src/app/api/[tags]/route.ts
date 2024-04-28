@@ -9,6 +9,7 @@ export async function GET(
     `https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=${tags}`
   );
   const data = await res.json();
+  const pureData = data.items
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ pureData });
 }
