@@ -24,8 +24,8 @@ export default function Search() {
 
   return (
     <div className="">
-      <div className="flex w-fill justify-between items-center px-5 mb-12 mt-16" >
-        <div className="">
+      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:px-5 mb-8  md:mb-12 mt-16" >
+        <div className="mb-6 md:mb-0 ">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
             type="text"
@@ -35,7 +35,7 @@ export default function Search() {
         </div>
         <div>
         {debouncedQuery && (
-          <div className="text-4xl font-semibold uppercase">
+          <div className="text-xl md:text-4xl font-semibold uppercase">
             <span className="text-orange-500 font-normal lowercase text-sm mr-4">
               tags:
             </span>

@@ -30,9 +30,9 @@ export default function PhotoCard({
   }
 
   return (
-    <div className="flex flex-col  border-2 border-r-4 border-black hover:scale-95 ease-out duration-100  hover:bg-orange-500">
+    <div className="flex flex-col border-2 border-r-4 border-black hover:scale-95 ease-out duration-100  hover:bg-orange-500">
       <Link href={link}>
-        <div className="m-8 w-64 h-64 relative overflow-hidden border-2 border-black bg-gray-300 ">
+        <div className="m-8 w-48 h-48  md:w-64 md:h-64 relative overflow-hidden border-2 border-black bg-gray-300 ">
           <Image
             src={media.m}
             alt={title}
