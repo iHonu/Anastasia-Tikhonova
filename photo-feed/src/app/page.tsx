@@ -1,5 +1,6 @@
 import Search from "@/components/Search";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -15,7 +16,9 @@ export default function Home() {
             Search for any image
           </h2>
         </header>
-        <Search />
+        <Suspense>
+          <Search />
+        </Suspense>
       </div>
     </main>
   );

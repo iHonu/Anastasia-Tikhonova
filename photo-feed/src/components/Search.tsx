@@ -4,7 +4,6 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import PhotoCard from "@/components/PhotoCard";
 import { usePhotoSearch } from "@/components/hooks/usePhotoSearch";
-import { Suspense } from "react";
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -13,8 +12,7 @@ export default function Search() {
   const query = searchParams.get("query") || "";
   const { loading, feed, debouncedQuery } = usePhotoSearch(query);
 
-
-//UPDATE SEARCH PARAMS AND URL
+  //UPDATE SEARCH PARAMS AND URL
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
@@ -24,10 +22,8 @@ export default function Search() {
     }
     replace(`${pathname}?${params.toString()}`);
   };
-  
 
   return (
-    <Suspense>
     <div>
       <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-8 md:mb-12 mt-16">
         <div className="mb-6 md:mb-0 w-1/3 ">
@@ -38,7 +34,7 @@ export default function Search() {
           />
         </div>
         <div>
-           {/* CONDITIONAL DISPLAY  TAGS */}
+          {/* CONDITIONAL DISPLAY  TAGS */}
           {debouncedQuery && (
             <div className="text-xl md:text-4xl font-semibold uppercase">
               <span className="text-orange-500 font-normal lowercase text-sm mr-4">
@@ -75,6 +71,5 @@ export default function Search() {
         )}
       </div>
     </div>
-    </Suspense>
   );
 }
