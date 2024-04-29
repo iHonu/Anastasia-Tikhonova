@@ -23,9 +23,9 @@ export default function Search() {
   };
 
   return (
-    <div className="flex flex-col mx-auto gap-8 items-center justify-center max-w-[100rem] mt-48">
-      <div className="flex w-full justify-between items-end px-24">
-        <div className="flex w-full max-w-sm">
+    <div className="">
+      <div className="flex w-fill justify-between items-center px-5 mb-12 mt-16" >
+        <div className="">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
             type="text"
@@ -33,19 +33,28 @@ export default function Search() {
             className=""
           />
         </div>
-
+        <div>
         {debouncedQuery && (
-          <div className="text-4xl font-semibold mt-8 px-4 py-2 uppercase">
-            <span className="text-orange-500 mr-4 font-normal lowercase text-sm">
+          <div className="text-4xl font-semibold uppercase">
+            <span className="text-orange-500 font-normal lowercase text-sm mr-4">
               tags:
             </span>
             {debouncedQuery}
           </div>
         )}
+        </div>
+      
       </div>
+
+
+
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
+        {/* LOADER */}
         {loading ? (
-          <p>Loading...</p>
+        <div
+          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status">
+        </div>
         ) : feed.length > 0 ? (
           feed.map((item) => (
             <PhotoCard
