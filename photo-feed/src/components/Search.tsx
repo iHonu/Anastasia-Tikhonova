@@ -4,6 +4,7 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import PhotoCard from "@/components/PhotoCard";
 import { usePhotoSearch } from "@/components/hooks/usePhotoSearch";
+import { Suspense } from "react";
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -26,9 +27,10 @@ export default function Search() {
   
 
   return (
+    <Suspense>
     <div>
-      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:px-5 mb-8  md:mb-12 mt-16">
-        <div className="mb-6 md:mb-0 ">
+      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-8 md:mb-12 mt-16">
+        <div className="mb-6 md:mb-0 w-1/3 ">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
             type="text"
@@ -73,5 +75,6 @@ export default function Search() {
         )}
       </div>
     </div>
+    </Suspense>
   );
 }
