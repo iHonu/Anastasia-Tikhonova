@@ -21,8 +21,8 @@ export default function PhotoCard({
   const trimmedTitle = title
     ? title.length > 15
       ? title.substring(0, 20)
-      : title
-    : "No title";
+      : title || 'Nice Photo'
+    : "Nice Photo";
 
   function extractAuthorName(author: string): string {
     const match = author.match(/\("([^"]*)"\)/);
@@ -31,7 +31,7 @@ export default function PhotoCard({
 
   return (
     <div className="flex flex-col  border-2 border-r-4 border-black hover:scale-95 ease-out duration-100  hover:bg-orange-500">
-        <div className="m-8 w-64 h-64 relative overflow-hidden border-2 border-black  ">
+        <div className="m-8 w-64 h-64 relative overflow-hidden border-2 border-black bg-gray-300 ">
         <Link href={link}>
           <Image
             src={media.m}

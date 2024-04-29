@@ -48,19 +48,28 @@ export default function Search() {
   }, [debouncedQuery]);
 
   return (
-    <div className="flex flex-col mx-auto gap-36 items-center justify-center">
-      <div className="flex w-full max-w-sm items-center justify-center space-x-2 mt-12 ml-12">
-        <Input
-          onChange={(e) => handleSearch(e.target.value)}
-          type="text"
-          placeholder="Search Tags"
-          className="px-4 py-2 border rounded"
-        />
+    <div className="flex flex-col mx-auto gap-8 items-center justify-center max-w-[100rem] mt-48">
+      <div className="flex w-full justify-between items-end px-24">
+        <div className="flex w-full max-w-sm r">
+          <Input
+            onChange={(e) => handleSearch(e.target.value)}
+            type="text"
+            placeholder="Search Tags"
+            className=" "
+          />
+        </div>
+
+        {debouncedQuery && (
+          <div className="text-4xl font-semibold  mt-8 px-4 py-2  uppercase">
+            <span className="text-orange-500 mr-4 font-normal lowercase text-sm">
+              tags:
+            </span>
+            {debouncedQuery}
+          </div>
+        )}
       </div>
-      <h2 className="text-lg font-semibold text-center mt-8 uppercase">
-        {debouncedQuery ? `${debouncedQuery}` : "Search Photos"}
-      </h2>
-      <div className="flex justify-center items-center gap-8 m-auto flex-wrap max-w-[60vw]">
+
+      <div className="flex justify-center items-center gap-8 my-auto flex-wrap ">
         {loading ? (
           <p>Loading...</p>
         ) : feed.length > 0 ? (
