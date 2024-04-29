@@ -20,9 +20,9 @@ export default function PhotoCard({
 
   const trimmedTitle = title
     ? title.length > 15
-      ? title.substring(0, 20)
-      : title || 'Nice Photo'
-    : "Nice Photo";
+      ? title.substring(0, 15)
+      : title
+    : "Photo";
 
   function extractAuthorName(author: string): string {
     const match = author.match(/\("([^"]*)"\)/);
@@ -31,8 +31,8 @@ export default function PhotoCard({
 
   return (
     <div className="flex flex-col  border-2 border-r-4 border-black hover:scale-95 ease-out duration-100  hover:bg-orange-500">
+      <Link href={link}>
         <div className="m-8 w-64 h-64 relative overflow-hidden border-2 border-black bg-gray-300 ">
-        <Link href={link}>
           <Image
             src={media.m}
             alt={title}
@@ -40,25 +40,19 @@ export default function PhotoCard({
             sizes="100%"
             className="object-cover w-full h-full"
           />
-        </Link>
-      </div>
-      <div className="flex justify-between items-center py-2 px-4 border-t-2 border-b-2 border-black">
-      <p>{formatDate(date_taken)}</p>
-      <p>{formatTime(date_taken)}</p>
-      </div>
-      <div className="flex justify-start items-center py-4 px-4 hover:font-semibold text-xl border-b-2 border-black ">
-      <p >{trimmedTitle}</p>
+        </div>
+      </Link>
 
+      <div className="flex justify-between items-center py-2 px-4 border-t-2 border-b-2 border-black">
+        <p>{formatDate(date_taken)}</p>
+        <p>{formatTime(date_taken)}</p>
+      </div>
+      <div className="flex justify-start items-center min-h-16 py-4 px-4 hover:font-semibold text-xl border-b-2 border-black ">
+        <p>{trimmedTitle}</p>
       </div>
       <div className="flex text-sm justify-end items-center py-2 px-4 border-b-2 border-black opacity-70">
-      <p>{extractAuthorName(author)}</p>
-
+        <p>{extractAuthorName(author)}</p>
       </div>
-
-      
-      
-
-     
     </div>
   );
 }

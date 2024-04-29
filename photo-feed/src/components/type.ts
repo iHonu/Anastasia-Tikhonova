@@ -5,3 +5,5 @@ interface PhotosProps {
     date_taken: string;
     author: string;
   }
+
+
