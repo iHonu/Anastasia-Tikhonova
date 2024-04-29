@@ -60,7 +60,7 @@ export default function Search() {
       <h2 className="text-lg font-semibold text-center mt-8 uppercase">
         {debouncedQuery ? `${debouncedQuery}` : "Search Photos"}
       </h2>
-      <div className="flex justify-center gap-4 flex-wrap max-w-[60vw]">
+      <div className="flex justify-center items-center gap-8 m-auto flex-wrap max-w-[60vw]">
         {loading ? (
           <p>Loading...</p>
         ) : feed.length > 0 ? (
@@ -70,6 +70,8 @@ export default function Search() {
               title={item.title}
               media={item.media}
               date_taken={item.date_taken}
+              link={item.link}
+              author={item.author}
             />
           ))
         ) : (
