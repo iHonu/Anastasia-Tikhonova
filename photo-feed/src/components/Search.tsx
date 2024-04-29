@@ -12,6 +12,8 @@ export default function Search() {
   const query = searchParams.get("query") || "";
   const { loading, feed, debouncedQuery } = usePhotoSearch(query);
 
+
+//UPDATE SEARCH PARAMS AND URL
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
@@ -21,19 +23,20 @@ export default function Search() {
     }
     replace(`${pathname}?${params.toString()}`);
   };
+  
 
   return (
-    <div className="">
+    <div>
       <div className="flex flex-col md:flex-row w-fill justify-between items-center md:px-5 mb-8  md:mb-12 mt-16">
         <div className="mb-6 md:mb-0 ">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
             type="text"
             placeholder="Search Tags"
-            className=""
           />
         </div>
         <div>
+           {/* CONDITIONAL DISPLAY  TAGS */}
           {debouncedQuery && (
             <div className="text-xl md:text-4xl font-semibold uppercase">
               <span className="text-orange-500 font-normal lowercase text-sm mr-4">
@@ -53,6 +56,7 @@ export default function Search() {
             role="status"
           ></div>
         ) : feed.length > 0 ? (
+          // DISPLAY PHOTOS
           feed.map((item) => (
             <PhotoCard
               key={item.date_taken}

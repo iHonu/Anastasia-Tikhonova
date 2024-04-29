@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function PhotoCard({
   title,
@@ -8,6 +9,7 @@ export default function PhotoCard({
   link,
   author,
 }: PhotosProps) {
+  //DATE FORMATTING
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
@@ -29,10 +31,56 @@ export default function PhotoCard({
     return match ? match[1] : "";
   }
 
+  //ANIMATION VARIANTS
+  const cardVariants = {
+    initial: {
+      scale: 0.95,
+      opacity: 0.5,
+    },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    hover: {
+      scale: 0.95,
+      backgroundColor: "#39FF14",
+    },
+  };
+
+  const titleVariants = {
+    initial: {
+      fontWeight: "normal",
+    },
+    hover: {
+      fontWeight: "bold",
+    },
+  };
+
+  const imageVariants = {
+    initial: {
+      scale: 1,
+    },
+    hover: {
+      scale: 0.96,
+    },
+  };
+
   return (
-    <div className="flex flex-col border-2 border-r-4 border-black hover:scale-95 ease-out duration-100  hover:bg-orange-500">
+    <motion.div
+      className="flex flex-col border-2 border-r-4 border-black"
+      variants={cardVariants}
+      initial="initial"
+      animate="animate"
+      whileHover="hover"
+    >
       <Link href={link}>
-        <div className="m-8 w-48 h-48  md:w-64 md:h-64 relative overflow-hidden border-2 border-black bg-gray-300 ">
+        <motion.div
+          variants={imageVariants}
+          className="m-8 w-48 h-48 md:w-64 md:h-64 relative overflow-hidden border-2 border-black bg-gray-300 "
+        >
           <Image
             src={media.m}
             alt={title}
@@ -40,19 +88,22 @@ export default function PhotoCard({
             sizes="100%"
             className="object-cover w-full h-full"
           />
-        </div>
+        </motion.div>
       </Link>
 
       <div className="flex justify-between items-center py-2 px-4 border-t-2 border-b-2 border-black">
         <p>{formatDate(date_taken)}</p>
         <p>{formatTime(date_taken)}</p>
       </div>
-      <div className="flex justify-start items-center min-h-16 py-4 px-4 hover:font-semibold text-xl border-b-2 border-black ">
+      <motion.div
+        className="flex justify-start items-center min-h-16 py-4 px-4 text-xl border-b-2 border-black"
+        variants={titleVariants}
+      >
         <p>{trimmedTitle}</p>
-      </div>
+      </motion.div>
       <div className="flex text-sm justify-end items-center py-2 px-4 border-b-2 border-black opacity-70">
         <p>{extractAuthorName(author)}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,8 @@ export const usePhotoSearch = (query: string) => {
   const [feed, setFeed] = useState<PhotosProps[]>([]);
   const [debouncedQuery] = useDebounce(query, 750);
 
+
+  //FETCH DATA FROM API
   useEffect(() => {
     const fetchNewData = async () => {
       setLoading(true);
