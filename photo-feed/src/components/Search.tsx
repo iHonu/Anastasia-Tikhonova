@@ -27,6 +27,7 @@ export default function Search() {
 
   return (
     <div>
+      {/* SEARCH BAR AND TAGS */}
       <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-2 md:mb-12 mt-8 md:mt-36">
         <div className="mb-6 md:mb-0 w-fill md:w-1/3 ">
           <Input
@@ -40,6 +41,7 @@ export default function Search() {
         </div>
       </div>
 
+      {/* LOADING SPINNER AND PHOTO CARDS */}
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
         {loading ? (
           <div
