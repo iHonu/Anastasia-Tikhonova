@@ -1,7 +1,6 @@
 "use client";
 
-
-import React from "react";
+import { useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import PhotoCard from "@/components/PhotoCard";
@@ -12,36 +11,50 @@ export default function Search() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const query = searchParams.get("query") || "";
-  const { loading, feed, debouncedQuery } = usePhotoSearch(query);
 
-  const handleSearch = (term: string) => {
+  const [inputValue, setInputValue] = useState("");
+  const query = searchParams.get("query") || "";
+
+  const { loading, feed } = usePhotoSearch(query);
+
+  const handleSearch = () => {
     const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set("query", term);
+    if (inputValue) {
+      params.set("query", inputValue);
     } else {
       params.delete("query");
     }
+    replace(`${pathname}?${params.toString()}`);
+    setInputValue("");
+  };
+
+  const handleTagClick = (tag: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("query", tag);
     replace(`${pathname}?${params.toString()}`);
   };
 
   return (
     <div>
-      {/* SEARCH BAR AND TAGS */}
       <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-2 md:mb-12 mt-8 md:mt-36">
-        <div className="mb-6 md:mb-0 w-fill md:w-1/3 ">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-6 md:mb-0 w-fill">
           <Input
-            onChange={(e) => handleSearch(e.target.value)}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             type="text"
             placeholder="Search Tags"
+            className="w-full md:w-[16rem] lg:w-[20rem] xl:w-[24rem] 2xl:w-[28rem]"
           />
+          <button
+            onClick={handleSearch}
+            className="px-6 py-2 bg-black text-white hover:opacity-65"
+          >
+            Search
+          </button>
         </div>
-        <div>
-          <Tags  handleTagClick={handleSearch} debouncedQuery={debouncedQuery} />
-        </div>
+        <Tags handleTagClick={handleTagClick} query={query} />
       </div>
 
-      {/* LOADING SPINNER AND PHOTO CARDS */}
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
         {loading ? (
           <div
@@ -60,8 +73,7 @@ export default function Search() {
             />
           ))
         ) : (
-          debouncedQuery &&
-          !loading && <p>No photos with tag {debouncedQuery} found</p>
+          query && !loading && <p>No photos with tag {query} found</p>
         )}
       </div>
     </div>

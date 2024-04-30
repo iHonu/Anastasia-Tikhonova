@@ -1,15 +1,15 @@
 interface TagsProps {
   handleTagClick: (tag: string) => void;
-  debouncedQuery: string | null;
+  query: string | null;
 }
 
 const popularTags = ["dog", "cat", "nature", "car"];
 
-const Tags: React.FC<TagsProps> = ({ handleTagClick, debouncedQuery }) => {
+const Tags: React.FC<TagsProps> = ({ handleTagClick, query }) => {
   return (
     <div className="">
       {/* NO TAGS */}
-      {!debouncedQuery ? (
+      {!query ? (
         <div>
           <span className="text-orange-500 font-normal lowercase text-sm mr-4">
             Popular Tags:
@@ -31,14 +31,14 @@ const Tags: React.FC<TagsProps> = ({ handleTagClick, debouncedQuery }) => {
       ) : (
         // QUERY TAGS
         <div>
-          <span className="text-orange-500 font-normal lowercase text-sm mr-4" >Tags:</span>
-            <span className="mr-2 text-xl font-semibold  uppercase">
-          {debouncedQuery}
-        </span>
+          <span className="text-orange-500 font-normal lowercase text-sm mr-4">
+            Tags:
+          </span>
+          <span className="mr-2 text-xl font-semibold  uppercase">
+            {query}
+          </span>
         </div>
-      
       )}
-    
     </div>
   );
 };

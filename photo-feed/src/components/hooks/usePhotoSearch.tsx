@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
+
 
 export const usePhotoSearch = (query: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [feed, setFeed] = useState<PhotosProps[]>([]);
-  const [debouncedQuery] = useDebounce(query, 750);
 
 
   //FETCH DATA FROM API
@@ -14,8 +13,8 @@ export const usePhotoSearch = (query: string) => {
     const fetchNewData = async () => {
       setLoading(true);
       try {
-        const endpoint = debouncedQuery ? `/api/${debouncedQuery}` : "/api/";
-        const res = await fetch(endpoint, { next: { revalidate: 120 } });
+        const endpoint = query ? `/api/${query}` : "/api/";
+        const res = await fetch(endpoint, { next: { revalidate: 60 } });
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -29,7 +28,7 @@ export const usePhotoSearch = (query: string) => {
     };
 
     fetchNewData();
-  }, [debouncedQuery]);
+  }, [query]);
 
-  return { loading, feed, debouncedQuery };
+  return { loading, feed };
 };
