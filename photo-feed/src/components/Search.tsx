@@ -47,7 +47,7 @@ export default function Search() {
           />
           <button
             onClick={handleSearch}
-            className="px-6 py-2 bg-black text-white hover:opacity-65"
+            className="px-6 py-2 bg-black text-white border-2 border-black hover:bg-lime-300 hover:text-black transition-colors duration-300 ease-in-out"
           >
             Search
           </button>

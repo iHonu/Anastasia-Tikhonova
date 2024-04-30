@@ -47,9 +47,9 @@ export default function PhotoCard({
     },
     hover: {
       scale: 0.95,
-      backgroundColor: "#39FF14",
+      backgroundColor: "#bef264",
       transition: {
-        duration: 0.1,
+        duration: 0.2,
         type: "ease-in-out",
       },
     },
