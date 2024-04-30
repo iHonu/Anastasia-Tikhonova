@@ -104,12 +104,14 @@ export default function PhotoCard({
         <p>{formatDate(date_taken)}</p>
         <p>{formatTime(date_taken)}</p>
       </div>
+
       <motion.div
         className="flex justify-start items-center min-h-16 py-4 px-4 text-xl"
         variants={titleVariants}
       >
         <p>{trimmedTitle}</p>
       </motion.div>
+
       <div className="flex text-sm justify-end items-center py-2 px-4 border-b-2 border-t-2 border-black opacity-70">
         <p>{extractAuthorName(author)}</p>
       </div>
