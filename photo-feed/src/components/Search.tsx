@@ -1,9 +1,12 @@
 "use client";
 
+
+import React from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import PhotoCard from "@/components/PhotoCard";
 import { usePhotoSearch } from "@/components/hooks/usePhotoSearch";
+import Tags from "@/components/Tags";
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -12,8 +15,6 @@ export default function Search() {
   const query = searchParams.get("query") || "";
   const { loading, feed, debouncedQuery } = usePhotoSearch(query);
 
-
-  //UPDATE SEARCH PARAMS AND URL
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
@@ -26,7 +27,7 @@ export default function Search() {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-4 md:mb-12 mt-12 md:mt-24 lg:mt-36">
+      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-2 md:mb-12 mt-8 md:mt-36">
         <div className="mb-6 md:mb-0 w-fill md:w-1/3 ">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
@@ -35,28 +36,17 @@ export default function Search() {
           />
         </div>
         <div>
-          {/* CONDITIONAL DISPLAY  TAGS */}
-          {debouncedQuery && (
-            <div className="text-xl md:text-4xl font-semibold uppercase">
-              <span className="text-orange-500 font-normal lowercase text-sm mr-4">
-                tags:
-              </span>
-              {debouncedQuery}
-            </div>
-          )}
-
+          <Tags  handleTagClick={handleSearch} debouncedQuery={debouncedQuery} />
         </div>
       </div>
 
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
-        {/* LOADER */}
         {loading ? (
           <div
             className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status"
           ></div>
         ) : feed.length > 0 ? (
-          // DISPLAY PHOTOS
           feed.map((item) => (
             <PhotoCard
               key={item.date_taken}

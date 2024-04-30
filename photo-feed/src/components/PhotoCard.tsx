@@ -52,10 +52,10 @@ export default function PhotoCard({
 
   const titleVariants = {
     initial: {
-      fontWeight: "normal",
+      x: 0,
     },
     hover: {
-      fontWeight: "bold",
+      x: 10,
     },
   };
 
