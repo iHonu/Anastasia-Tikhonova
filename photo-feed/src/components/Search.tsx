@@ -12,6 +12,7 @@ export default function Search() {
   const query = searchParams.get("query") || "";
   const { loading, feed, debouncedQuery } = usePhotoSearch(query);
 
+
   //UPDATE SEARCH PARAMS AND URL
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
@@ -25,8 +26,8 @@ export default function Search() {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-8 md:mb-12 mt-16">
-        <div className="mb-6 md:mb-0 w-1/3 ">
+      <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-4 md:mb-12 mt-12 md:mt-24 lg:mt-36">
+        <div className="mb-6 md:mb-0 w-fill md:w-1/3 ">
           <Input
             onChange={(e) => handleSearch(e.target.value)}
             type="text"
@@ -43,6 +44,7 @@ export default function Search() {
               {debouncedQuery}
             </div>
           )}
+
         </div>
       </div>
 
