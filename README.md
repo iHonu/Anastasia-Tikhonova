@@ -4,7 +4,7 @@
 
 This web application allows users to browse public Flickr feed images in either a list or grid view. Additionally, users can search for images using keywords/tags and view relevant results.
 
-![Screenshot](//photo-feed/public/Screenshot 2024-04-30 at 15.52.31.png)
+![Screenshot](photo-feed/public/3.png)
 ### Features:
 
 - Loads public feed images on page load
