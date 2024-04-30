@@ -45,7 +45,7 @@ export default function Search() {
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
         {loading ? (
           <div
-            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            className="inline-block h-8 w-8 mt-36 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status"
           ></div>
         ) : feed.length > 0 ? (

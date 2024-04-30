@@ -9,6 +9,7 @@ export default function PhotoCard({
   link,
   author,
 }: PhotosProps) {
+  
   //DATE FORMATTING
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -47,6 +48,10 @@ export default function PhotoCard({
     hover: {
       scale: 0.95,
       backgroundColor: "#39FF14",
+      transition: {
+        duration: 0.1,
+        type: "ease-in-out",
+      },
     },
   };
 
@@ -55,7 +60,11 @@ export default function PhotoCard({
       x: 0,
     },
     hover: {
-      x: 10,
+      x: 5,
+    },
+    transition: {
+      duration: 0.1,
+      type: "ease-out",
     },
   };
 

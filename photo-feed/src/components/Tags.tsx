@@ -18,7 +18,7 @@ const Tags: React.FC<TagsProps> = ({ handleTagClick, debouncedQuery }) => {
             <a
               key={tag}
               href="#"
-              className="mr-2 border-dotted border-b-2 border-black uppercase hover:text-orange-500 hover:border-orange-500 transition-colors duration-300 ease-in-out"
+              className="mr-3 border-dotted border-b-2 border-black uppercase hover:text-orange-500 hover:border-orange-500 transition-colors duration-300 ease-in-out"
               onClick={(e) => {
                 e.preventDefault();
                 handleTagClick(tag);
