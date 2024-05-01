@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-
 export const usePhotoSearch = (query: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [feed, setFeed] = useState<PhotosProps[]>([]);
-
 
   //FETCH DATA FROM API
   useEffect(() => {

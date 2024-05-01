@@ -36,6 +36,7 @@ export default function Search() {
 
   return (
     <div>
+      {/* SEARCH AND BUTTON */}
       <div className="flex flex-col md:flex-row w-fill justify-between items-center md:mx-8 lg:mx-4 mb-2 md:mb-12 mt-8 md:mt-36">
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-6 md:mb-0 w-fill">
           <Input
@@ -55,8 +56,10 @@ export default function Search() {
         <Tags handleTagClick={handleTagClick} query={query} />
       </div>
 
+      {/* PHOTO FEED */}
       <div className="flex justify-center items-center gap-8 my-auto flex-wrap">
         {loading ? (
+          // LOADING SPINNER
           <div
             className="inline-block h-8 w-8 mt-36 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status"
@@ -73,7 +76,13 @@ export default function Search() {
             />
           ))
         ) : (
-          query && !loading && <p>No photos with tag {query} found</p>
+          query &&
+          !loading && (
+            <p className="mt-12 md:mt-24 text-xl md:text-2xl">
+              No photos with tag <span className="font-bold">{query} </span>
+              found
+            </p>
+          )
         )}
       </div>
     </div>
